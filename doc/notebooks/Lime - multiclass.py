@@ -84,7 +84,13 @@ print(c.predict_proba([newsgroups_test.data[0]]).round(3))
 
 
 from lime.lime_text import LimeTextExplainer
-explainer = LimeTextExplainer(class_names=class_names)
+explainer = LimeTextExplainer(
+    verbose=True,
+    class_names=class_names,
+    # feature_selection="highest_weights"
+    feature_selection="lasso_path"
+    # feature_selection = "forward_selection"
+)
 
 
 # Previously, we used the default parameter for label when generating explanation, which works well in the binary case.  
